@@ -2,7 +2,7 @@
 $destinationPath = "\\YourServer\YourShare"
 $fileExtensions = @("exe", "msi", "iso", "img")
 $pattern = "[A-Za-z]+"
-$timeSpan = New-TimeSpan -Minutes 600
+$timeSpan = New-TimeSpan -Seconds 600
 
 while ($true) {
     $now = Get-Date
@@ -37,5 +37,5 @@ while ($true) {
         Copy-Item -Path $file.FullName -Destination "$($destFolder)\$($now.ToString("yyyy-MM-dd"))_$($file.Name)" -Force
     }
 
-    Start-Sleep -Seconds 600
+    Start-Sleep -Seconds $timeSpan.TotalSeconds
 }
